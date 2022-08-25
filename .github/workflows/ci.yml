@@ -17,3 +17,7 @@ jobs:
           distribution: 'corretto'
       - name: Run static code tests
         run: ./gradlew check
+      - name: Build package
+        run: ./gradlew jar
+      - name: Publish jar file
+        run: ./gradlew publish
