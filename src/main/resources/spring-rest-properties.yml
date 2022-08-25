@@ -1,8 +1,0 @@
-spring:
-  rest:
-    mappings:
-      "com.agileactors.templateservice.domain.DomainObject.response.get": "com.agileactors.templateservice.dto.GetDomainObjectResponseDto"
-      "com.agileactors.templateservice.domain.DomainObject.response.create": "com.agileactors.templateservice.dto.GetDomainObjectResponseDto"
-      "com.agileactors.templateservice.domain.DomainObject.response.update": "com.agileactors.templateservice.dto.GetDomainObjectResponseDto"
-      "com.agileactors.templateservice.dto.CreateDomainObjectRequestDto.domain": "com.agileactors.templateservice.domain.DomainObject"
-      "com.agileactors.templateservice.dto.UpdateDomainObjectRequestDto.domain": "com.agileactors.templateservice.domain.DomainObject"

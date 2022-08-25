@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.agileactors.crud.autoconfiguration.CrudAutoConfiguration, com.agileactors.crud.properties.SpringRestProperties

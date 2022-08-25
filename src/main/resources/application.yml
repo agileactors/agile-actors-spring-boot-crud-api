@@ -1,7 +1,3 @@
-application:
-  timezone: Europe/Athens
-  db:
-    schema: templateservice
 logging:
   level:
     org:
@@ -70,10 +66,7 @@ spring:
       settings:
         web-admin-password: admin
   datasource:
-    url: jdbc:h2:file:/Users/apanousis/IdeaProjects/personal/trainings/db;DATABASE_TO_LOWER=TRUE
+    url: jdbc:h2:file:/tmp/db;DATABASE_TO_LOWER=TRUE
     username: sa
     password: password
     driverClassName: "org.h2.Driver"
-#  cache:
-#    ehcache:
-#      config: classpath:ehcache.xml

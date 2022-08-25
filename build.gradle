@@ -1,24 +1,27 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.2'
-    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
-    id 'java'
+    id 'java-library'
+    id 'maven-publish'
     id 'checkstyle'
 }
 
 group = 'com.agileactors'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = '17'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.projectlombok:lombok'
+    annotationProcessor(platform("org.springframework.boot:spring-boot-dependencies:2.7.3"))
+    api(platform("org.springframework.boot:spring-boot-dependencies:2.7.3"))
+
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
+    api 'org.springframework.boot:spring-boot-starter-web'
+    api 'org.springframework.boot:spring-boot-starter-actuator'
+    api 'org.springframework.boot:spring-boot-starter-validation'
+    api 'org.projectlombok:lombok'
 
     annotationProcessor 'org.projectlombok:lombok'
 
@@ -27,9 +30,33 @@ dependencies {
     runtimeOnly 'org.flywaydb:flyway-core'
     runtimeOnly 'com.h2database:h2'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes["Implementation-Version"] = "${archiveVersion.get()}"
+        attributes["Implementation-Title"] = "Spring Boot CRUD API"
+        attributes["Implementation-Vendor"] = "Agile Actors"
+        attributes["Created-By"] = System.getProperty('java.version') + ' (' + System.getProperty('java.vendor') + ')'
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            from project.components.java
+        }
+    }
 }
