@@ -65,7 +65,7 @@ publishing {
             url = "https://maven.pkg.github.com/agileactors/agile-actors-spring-boot-crud-api"
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_ACTIONS_TOKEN")
+                password = System.getenv("PACKAGES_TOKEN")
             }
         }
     }
