@@ -21,9 +21,9 @@ jobs:
         run: ./gradlew jar
       - name: Publish jar file
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
         run: |
           VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M)
+          echo $VERSION
           echo "Github username: ${GITHUB_ACTOR}"
-          ./gradlew -Pversion=${VERSION} publish
+          ./gradlew -Pversion=$VERSION publish
