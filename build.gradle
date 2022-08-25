@@ -39,7 +39,7 @@ tasks.named('test') {
 
 jar {
     manifest {
-        attributes["Implementation-Version"] = "${archiveVersion.get()}"
+        attributes["Implementation-Version"] = "${archiveVersion.orElse("")}"
         attributes["Implementation-Title"] = "Spring Boot CRUD API"
         attributes["Implementation-Vendor"] = "Agile Actors"
         attributes["Created-By"] = System.getProperty('java.version') + ' (' + System.getProperty('java.vendor') + ')'
