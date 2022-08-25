@@ -5,8 +5,9 @@ plugins {
 }
 
 group = 'com.agileactors'
-version = '1.0.0'
+version project.hasProperty('version') ? version : '1.0.0'
 sourceCompatibility = '17'
+targetCompatibility = '17'
 
 repositories {
     mavenLocal()
