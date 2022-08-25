@@ -17,8 +17,6 @@ jobs:
           distribution: 'corretto'
       - name: Run static code tests
         run: ./gradlew check
-      - name: Build package
-        run: ./gradlew jar
       - name: Publish jar file
         env:
           PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
@@ -26,4 +24,4 @@ jobs:
           VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M)
           echo $VERSION
           echo "Github username: ${GITHUB_ACTOR}"
-          ./gradlew -Pversion=$VERSION publish
+          ./gradlew -Pversion=$VERSION jar publish
