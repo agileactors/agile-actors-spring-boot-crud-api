@@ -22,7 +22,7 @@ jobs:
       - name: Publish jar file
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run:
+        run: |
           VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M)
           echo "Github username: ${GITHUB_ACTOR}"
           ./gradlew -Pversion=${VERSION} publish
