@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.agileactors'
-version project.hasProperty('version') ? version : '1.0.0'
+version = System.getenv("BUILD_VERSION") ? System.getenv("BUILD_VERSION") : '1.0.0'
 sourceCompatibility = '17'
 targetCompatibility = '17'
 
@@ -39,7 +39,7 @@ tasks.named('test') {
 
 jar {
     manifest {
-        attributes["Implementation-Version"] = "${archiveVersion.orElse("")}"
+        attributes["Implementation-Version"] = "${archiveVersion.get()}"
         attributes["Implementation-Title"] = "Spring Boot CRUD API"
         attributes["Implementation-Vendor"] = "Agile Actors"
         attributes["Created-By"] = System.getProperty('java.version') + ' (' + System.getProperty('java.vendor') + ')'
