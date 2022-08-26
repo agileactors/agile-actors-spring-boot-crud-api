@@ -21,9 +21,7 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
             build
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          key: ${{ runner.os }}-gradle-
       - name: Run static code tests
         run: ./gradlew check
       - name: Check if code is packaged
@@ -44,9 +42,7 @@ jobs:
             ~/.gradle/caches
             ~/.gradle/wrapper
             build
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          key: ${{ runner.os }}-gradle-
       - name: Publish jar file
         env:
           PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
