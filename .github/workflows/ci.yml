@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Continuous Integration
 
 on: [push, pull_request]
 
