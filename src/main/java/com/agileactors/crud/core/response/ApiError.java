@@ -1,9 +1,14 @@
 package com.agileactors.crud.core.response;
 
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-public record ApiError(
-    LocalDateTime timestamp,
-    String message
-) {
+@Data
+@AllArgsConstructor
+public class ApiError {
+
+  private LocalDateTime timestamp;
+  private String message;
+
 }
