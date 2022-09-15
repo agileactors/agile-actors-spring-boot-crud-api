@@ -13,7 +13,6 @@ import java.util.List;
  *
  * @param <I> the type of the entity type's identifier.
  * @param <T> the persisted type.
- *
  * @author Alexis Panousis
  */
 public interface AbstractCrudService<T extends AbstractPersistable<I>, I extends Serializable> {
@@ -46,9 +45,9 @@ public interface AbstractCrudService<T extends AbstractPersistable<I>, I extends
    * Performs all necessary actions to create an entity. The input class must extend
    * {@link AbstractCreateResourceRequestDto}.
    *
-   * @param createDto<C> the D(ata)T(ransfer)O(bject) that holds all the required fields
+   * @param <C> the D(ata)T(ransfer)O(bject) that holds all the required fields
    * @return the persisted entity
-   * @throws MappingNotFoundException see {@link MappingService#getTargetMappingType(Class, MappingType)}
+   * @throws MappingNotFoundException see {@link MappingService#convert(Object, MappingType)}
    *                                  to understand when this exception is thrown
    */
   <C extends AbstractCreateResourceRequestDto> T create(C createDto)
@@ -58,9 +57,9 @@ public interface AbstractCrudService<T extends AbstractPersistable<I>, I extends
    * Performs all necessary actions to create an entity. The input class must extend
    * {@link AbstractUpdateRequestResourceDto}.
    *
-   * @param updateDto<U> the D(ata)T(ransfer)O(bject) that holds all the required fields
+   * @param <U> the D(ata)T(ransfer)O(bject) that holds all the required fields
    * @return the updated entity
-   * @throws MappingNotFoundException        see {@link MappingService#getTargetMappingType(Class, MappingType)}
+   * @throws MappingNotFoundException        see {@link MappingService#convert(Object, MappingType)}
    *                                         to understand when this exception is thrown
    * @throws DomainResourceNotFoundException when the entity to update is not found
    */
