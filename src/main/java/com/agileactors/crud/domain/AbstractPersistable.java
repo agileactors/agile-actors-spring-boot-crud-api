@@ -9,6 +9,14 @@ import javax.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
+
+/**
+ * Abstract base class for persistable entities. Introduces a createdAt field for the entity with
+ * initial value.
+ *
+ * @author Alexis Panousis
+ * @param <I> the type of the auditing type's identifier.
+ */
 @MappedSuperclass
 @Getter
 @Setter

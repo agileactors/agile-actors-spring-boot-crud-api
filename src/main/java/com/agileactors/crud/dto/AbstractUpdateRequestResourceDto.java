@@ -6,6 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Placeholder class. All update DTOs will have to extend this class.
+ *
+ * @param <I> the entity identifier type
+ * @author Alexis Panousis
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
