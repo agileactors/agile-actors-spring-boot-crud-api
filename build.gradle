@@ -99,3 +99,7 @@ task printVersion {
         println project.version
     }
 }
+
+signing {
+    sign configurations.archives
+}
