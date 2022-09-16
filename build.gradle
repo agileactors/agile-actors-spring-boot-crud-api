@@ -2,10 +2,11 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'checkstyle'
+    id 'signing'
 }
 
 group = 'com.agileactors'
-version = System.getenv("BUILD_VERSION") ? System.getenv("BUILD_VERSION") : '1.0.0'
+version = System.getenv("BUILD_VERSION") ? System.getenv("BUILD_VERSION") : '1.0.1'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -38,6 +39,24 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    configurations.archives
 }
 
 jar {

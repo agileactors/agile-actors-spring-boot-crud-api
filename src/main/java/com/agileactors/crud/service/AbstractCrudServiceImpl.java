@@ -10,8 +10,15 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.MappedSuperclass;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
 
+/**
+ * Default implementation of the {@link AbstractCrudService} interface.
+ *
+ * @param <I> the type of the entity type's identifier.
+ * @param <T> the persisted type.
+ * @param <D> the dao used for any database operation
+ * @author Alexis Panousis
+ */
 @MappedSuperclass
 public abstract class AbstractCrudServiceImpl<
     T extends AbstractPersistable<I>,
@@ -22,44 +29,60 @@ public abstract class AbstractCrudServiceImpl<
 
   @Autowired
   private MappingService mappingService;
-  @Autowired
-  private ConversionService conversionService;
 
   public AbstractCrudServiceImpl(D dao) {
     this.dao = dao;
   }
 
+  /*
+   * (non-Javadoc)
+   * @see AbstractCrudService#findAll()
+   */
   @Override
   public List<T> findAll() {
     return dao.findAll();
   }
 
+  /*
+   * (non-Javadoc)
+   * @see AbstractCrudService#getById(java.io.Serializable)
+   */
   @Override
   public T getById(I id) throws DomainResourceNotFoundException {
     return dao.findById(id)
         .orElseThrow(() -> new DomainResourceNotFoundException("Resource not found", id));
   }
 
+  /*
+   * (non-Javadoc)
+   * @see AbstractCrudService#deleteById(java.io.Serializable)
+   */
   @Override
   public void deleteById(I id) {
     dao.deleteById(id);
   }
 
+  /*
+   * (non-Javadoc)
+   * @see AbstractCrudService#create(java.lang.Object)
+   */
   @Override
   public <C extends AbstractCreateResourceRequestDto> T create(C createDto)
       throws MappingNotFoundException {
-    T newEntity = (T) conversionService.convert(createDto,
-        mappingService.getResponseMappingType(createDto.getClass(), ".domain"));
+    T newEntity = (T) mappingService.convert(createDto, MappingType.DOMAIN);
     return dao.save(newEntity);
   }
 
+  /*
+   * (non-Javadoc)
+   * @see AbstractCrudService#update(java.lang.Object)
+   */
   @Override
   public <U extends AbstractUpdateRequestResourceDto<I>> T update(U updateDto)
       throws MappingNotFoundException, DomainResourceNotFoundException {
     T existingEntity = getById(updateDto.getId());
 
-    T newEntity = (T) conversionService.convert(updateDto,
-        mappingService.getResponseMappingType(updateDto.getClass(), ".domain"));
+    T newEntity = (T) mappingService.convert(updateDto, MappingType.DOMAIN);
 
     newEntity.setCreatedAt(existingEntity.getCreatedAt());
 

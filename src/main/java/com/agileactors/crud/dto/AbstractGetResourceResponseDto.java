@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Placeholder class. All get DTOs will have to extend this class.
+ *
+ * @param <I> the entity identifier type
+ * @author Alexis Panousis
+ */
 @RequiredArgsConstructor
 public abstract class AbstractGetResourceResponseDto<I extends Serializable> {
   private final I id;

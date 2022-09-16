@@ -8,6 +8,7 @@ import com.agileactors.crud.exception.DomainResourceNotFoundException;
 import com.agileactors.crud.exception.MappingNotFoundException;
 import com.agileactors.crud.service.AbstractCrudService;
 import com.agileactors.crud.service.MappingService;
+import com.agileactors.crud.service.MappingType;
 import java.io.Serializable;
 import java.util.stream.Stream;
 import javax.persistence.MappedSuperclass;
@@ -48,8 +49,7 @@ public abstract class AbstractCrudApi<
         .parallelStream()
         .map(it -> {
           try {
-            return conversionService.convert(it,
-                mappingService.getResponseMappingType(it.getClass(), ".response.get"));
+            return mappingService.convert(it.getClass(), MappingType.API_RESPONSE_GET);
           } catch (MappingNotFoundException e) {
             // TODO: fix this shit
             e.printStackTrace();
@@ -62,8 +62,7 @@ public abstract class AbstractCrudApi<
   public R getById(@PathVariable I id)
       throws DomainResourceNotFoundException, MappingNotFoundException {
     T entity = service.getById(id);
-    return (R) conversionService.convert(entity,
-        mappingService.getResponseMappingType(entity.getClass(), ".response.get"));
+    return (R) mappingService.convert(entity, MappingType.API_RESPONSE_GET);
   }
 
   @DeleteMapping("/{id}")
@@ -75,8 +74,7 @@ public abstract class AbstractCrudApi<
   @PostMapping
   public R create(@Valid @RequestBody C createDto) throws MappingNotFoundException {
     T newEntity = service.create(createDto);
-    return (R) conversionService.convert(newEntity,
-        mappingService.getResponseMappingType(newEntity.getClass(), ".response.create"));
+    return (R) mappingService.convert(newEntity, MappingType.API_RESPONSE_CREATE);
   }
 
   @PutMapping("/{id}")
@@ -87,8 +85,7 @@ public abstract class AbstractCrudApi<
 
     T newEntity = service.update(updateDto);
 
-    return (R) conversionService.convert(newEntity,
-        mappingService.getResponseMappingType(newEntity.getClass(), ".response.update"));
+    return (R) mappingService.convert(newEntity, MappingType.API_RESPONSE_UPDATE);
   }
 
 }

@@ -8,6 +8,13 @@ import javax.persistence.PreUpdate;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Abstract base class for updatable entities. Introduces an updatedAt which is always updated upon
+ * enity storage
+ *
+ * @author Alexis Panousis
+ * @param <I> the type of the auditing type's identifier.
+ */
 @MappedSuperclass
 @Getter
 @Setter
