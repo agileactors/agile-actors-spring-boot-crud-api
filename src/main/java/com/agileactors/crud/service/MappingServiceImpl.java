@@ -30,7 +30,7 @@ public final class MappingServiceImpl implements MappingService {
   }
 
   /**
-   * Returns the mapping type defined at {@link SpringRestProperties#mappings}
+   * Returns the mapping type defined at {@link SpringRestProperties#mappings}.
    *
    * @param source            the source object
    * @param targetMappingType the target object's type

@@ -3,10 +3,10 @@ package com.agileactors.crud.service;
 import com.agileactors.crud.exception.MappingNotFoundException;
 
 /**
- * The service used for interpreting the mapping defined at @{@link com.agileactors.crud.properties.SpringRestProperties#mappings}.
- * See {@link com.agileactors.crud.properties.SpringRestProperties} for the details of the mapping file.
- * Since the service uses the {@link org.springframework.core.convert.ConversionService} to perform the conversion
- * it is mandatory that the relevant converted is implemented.
+ * The service used for interpreting the mapping defined at
+ * {@link com.agileactors.crud.properties.SpringRestProperties}.
+ * Since the service uses the {@link org.springframework.core.convert.ConversionService} to perform
+ * the conversion it is mandatory that the relevant converted is implemented.
  *
  * @author Alexis Panousis
  */

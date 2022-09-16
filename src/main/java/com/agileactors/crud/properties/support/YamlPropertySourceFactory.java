@@ -16,7 +16,8 @@ public final class YamlPropertySourceFactory implements PropertySourceFactory {
 
   /*
    * (non-Javadoc)
-   * @see PropertySourceFactory#createPropertySource(java.lang.String, org.springframework.core.io.support.EncodedResource)
+   * @see PropertySourceFactory#createPropertySource(java.lang.String,
+   * org.springframework.core.io.support.EncodedResource)
    */
   @Override
   public PropertySource<?> createPropertySource(String name, EncodedResource encodedResource) {

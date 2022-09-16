@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * Custom error used at REST APIs
+ * Custom error used at REST APIs.
  *
  * @author Alexis Panousis
  */
