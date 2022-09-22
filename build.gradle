@@ -80,6 +80,9 @@ publishing {
                 }
             }
             from project.components.java
+
+            artifact sourcesJar
+            artifact javadocJar
         }
     }
     repositories {
@@ -93,6 +96,7 @@ publishing {
         }
     }
 }
+
 
 task printVersion {
     doLast {
