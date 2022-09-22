@@ -87,8 +87,8 @@ publishing {
             name = "Sonatype"
             url = "https://s01.oss.sonatype.org/content/repositories/releases"
             credentials {
-                username = project.findProperty("oss.user") ?: System.getenv("GITHUB_ACTOR")
-                password = project.findProperty("oss.token") ?: System.getenv("PACKAGES_TOKEN")
+                username = project.findProperty("oss.user") ?: System.getenv("OSS_USER")
+                password = project.findProperty("oss.token") ?: System.getenv("OSS_TOKEN")
             }
         }
     }

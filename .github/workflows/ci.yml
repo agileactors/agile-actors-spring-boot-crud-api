@@ -26,8 +26,9 @@ jobs:
         run: ./gradlew check
       - name: Check if code is packaged
         run: BUILD_VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M) ./gradlew -Pversion=$VERSION jar
-  install:
-    if: ${{ github.ref == 'refs/heads/main' }}
+  publish:
+#    TODO: uncomment that, just for testing
+#    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -47,5 +48,7 @@ jobs:
       - name: Publish jar file
         env:
           PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
+          OSS_USER: ${{ secrets.OSS_OSS_USER }}
+          OSS_TOKEN: ${{ secrets.OSS_TOKEN }}
         run: |
           BUILD_VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M) ./gradlew -Pversion=$VERSION publish
