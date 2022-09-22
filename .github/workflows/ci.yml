@@ -48,7 +48,7 @@ jobs:
       - name: Publish jar file
         env:
           PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
-          OSS_USER: ${{ secrets.OSS_OSS_USER }}
+          OSS_USER: ${{ secrets.OSS_USER }}
           OSS_TOKEN: ${{ secrets.OSS_TOKEN }}
         run: |
           BUILD_VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M) ./gradlew -Pversion=$VERSION publish
