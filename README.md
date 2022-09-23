@@ -1,3 +1,5 @@
+[![javadoc](https://javadoc.io/badge2/com.agileactors/agile-actors-spring-boot-crud-api/javadoc.svg)](https://javadoc.io/doc/com.agileactors/agile-actors-spring-boot-crud-api)
+
 # Spring Boot CRUD API Library
 
 This is a library that extends Spring Boot functionality and offers a convenient and easy way to expose a domain's CRUD 
