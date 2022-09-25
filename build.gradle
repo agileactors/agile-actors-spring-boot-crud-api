@@ -56,7 +56,12 @@ artifacts {
 }
 
 signing {
-    configurations.archives
+    setRequired {
+        gradle.taskGraph.hasTask("uploadArchives")
+    }
+
+    useInMemoryPgpKeys(System.getenv('GPG_SECRET_KEY'), System.getenv('GPG_PASSPHRASE'))
+    sign configurations.archives
 }
 
 jar {
@@ -97,13 +102,8 @@ publishing {
     }
 }
 
-
 task printVersion {
     doLast {
         println project.version
     }
-}
-
-signing {
-    sign configurations.archives
 }
