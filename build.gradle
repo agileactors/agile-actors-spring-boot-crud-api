@@ -57,7 +57,7 @@ artifacts {
 
 signing {
     setRequired {
-        gradle.taskGraph.hasTask("uploadArchives")
+        true
     }
 
     useInMemoryPgpKeys(System.getenv('GPG_SECRET_KEY'), System.getenv('GPG_PASSPHRASE'))
