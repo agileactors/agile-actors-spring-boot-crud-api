@@ -30,7 +30,7 @@ jobs:
         env:
           GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY}}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE}}
-        run: BUILD_VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M) ./gradlew -Pversion=$VERSION build
+        run: BUILD_VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M) ./gradlew -Pversion=$VERSION sign
   publish:
 # TODO: remove this before merge
 #    if: ${{ github.ref == 'refs/heads/main' }}

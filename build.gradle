@@ -57,11 +57,11 @@ artifacts {
 
 signing {
     setRequired {
-        true
+        gradle.taskGraph.hasTask("publish")
     }
 
     useInMemoryPgpKeys(System.getenv('GPG_SECRET_KEY'), System.getenv('GPG_PASSPHRASE'))
-    sign configurations.archives
+    sign publishing.publications
 }
 
 jar {
