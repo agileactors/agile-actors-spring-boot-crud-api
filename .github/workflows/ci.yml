@@ -25,7 +25,7 @@ jobs:
       - name: Run static code tests
         run: ./gradlew check
       - name: Check if code is packaged
-        run: BUILD_VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M) ./gradlew -Pversion=$VERSION jar
+        run: BUILD_VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M) ./gradlew -Pversion=$VERSION build
   publish:
 # TODO: remove this before merge
 #    if: ${{ github.ref == 'refs/heads/main' }}
