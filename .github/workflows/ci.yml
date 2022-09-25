@@ -25,6 +25,11 @@ jobs:
       - name: Run static code tests
         run: ./gradlew check
       - name: Check if code is packaged
+        run: BUILD_VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M) ./gradlew -Pversion=$VERSION jar
+      - name: Sign artefacts
+        env:
+          GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY}}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE}}
         run: BUILD_VERSION=$(./gradlew -q pV)-$(date +%Y%m%d%H%M) ./gradlew -Pversion=$VERSION build
   publish:
 # TODO: remove this before merge
