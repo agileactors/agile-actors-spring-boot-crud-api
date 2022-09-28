@@ -5,7 +5,6 @@ plugins {
     id 'signing'
 }
 
-name = 'Spring Boot CRUD API Library'
 description = 'This is a library that extends Spring Boot functionality and offers a convenient and easy way ' +
         'to expose a domain\'s CRUD (Create, Read, Update, Delete) operations.'
 
