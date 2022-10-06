@@ -28,4 +28,4 @@ For more information on when to use `api` and when to use `implementation`,
 consult the
 [Gradle documentation on API and implementation separation](https://docs.gradle.org/current/userguide/java_library_plugin.html#sec:java_library_separation).
 
-** View [Javadoc]((https://javadoc.io/doc/com.agileactors/agile-actors-spring-boot-crud-api)) to see how it works!**
+**View [Javadoc](https://javadoc.io/doc/com.agileactors/agile-actors-spring-boot-crud-api) to see how it works!**
