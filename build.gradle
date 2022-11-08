@@ -5,6 +5,9 @@ plugins {
     id 'signing'
 }
 
+description = 'This is a library that extends Spring Boot functionality and offers a convenient and easy way ' +
+        'to expose a domain\'s CRUD (Create, Read, Update, Delete) operations.'
+
 group = 'com.agileactors'
 version = System.getenv("BUILD_VERSION") ? System.getenv("BUILD_VERSION") : '1.0.3'
 
@@ -56,7 +59,12 @@ artifacts {
 }
 
 signing {
-    configurations.archives
+    setRequired {
+        gradle.taskGraph.hasTask("publish")
+    }
+
+    useInMemoryPgpKeys(System.getenv('GPG_SECRET_KEY'), System.getenv('GPG_PASSPHRASE'))
+    sign publishing.publications
 }
 
 jar {
@@ -79,6 +87,28 @@ publishing {
                     fromResolutionResult()
                 }
             }
+
+            pom {
+                name = project.name
+                packaging = 'jar'
+                description = project.description
+
+                url = 'https://github.com/agileactors/agile-actors-spring-boot-crud-api'
+
+                scm {
+                    connection = 'git@github.com:agileactors/agile-actors-spring-boot-crud-api.git'
+                    developerConnection = 'git@github.com:agileactors/agile-actors-spring-boot-crud-api.git'
+                    url = 'https://github.com/agileactors/agile-actors-spring-boot-crud-api'
+                }
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+            }
+
             from project.components.java
 
             artifact sourcesJar
@@ -97,13 +127,8 @@ publishing {
     }
 }
 
-
 task printVersion {
     doLast {
         println project.version
     }
-}
-
-signing {
-    sign configurations.archives
 }

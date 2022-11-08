@@ -44,9 +44,10 @@ jobs:
             ~/.gradle/wrapper
             build
           key: ${{ runner.os }}-gradle-
-      - name: Publish jar file
+      - name: Publish signed jar file
         env:
-          PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
+          GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY}}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE}}
           OSS_USER: ${{ secrets.OSS_USER }}
           OSS_TOKEN: ${{ secrets.OSS_TOKEN }}
         run: |
