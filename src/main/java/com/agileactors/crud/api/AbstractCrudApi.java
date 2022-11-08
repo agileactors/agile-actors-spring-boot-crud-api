@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 import javax.persistence.MappedSuperclass;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +22,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+/**
+ * Default implementation of CRUD api
+ *
+ * @param <I> the type of the entity type's identifier.
+ * @param <T> the persisted type.
+ * @param <S> the type of the service that exposes the crud operations of the given <T> type
+ * @param <C> the type of the DTO used while creating an entity
+ * @param <U> the type of the DTO used while updating an entity
+ * @param <R> the type of the DTO used while retrieving an entity
+ */
 @MappedSuperclass
 public abstract class AbstractCrudApi<
     T extends AbstractPersistable<I>,
@@ -37,11 +46,13 @@ public abstract class AbstractCrudApi<
   private S service;
 
   @Autowired
-  private ConversionService conversionService;
-
-  @Autowired
   private MappingService mappingService;
 
+  /**
+   * Returns all instances of the type.
+   *
+   * @return all entities or empty list when no entity is found
+   */
   @GetMapping
   // TODO: Paging
   public Stream<Object> findAll() {
@@ -58,6 +69,13 @@ public abstract class AbstractCrudApi<
         });
   }
 
+  /**
+   * Retrieves an entity by its id.
+   *
+   * @param id must not be {@literal null}.
+   * @return the entity with the given id
+   * @throws DomainResourceNotFoundException if entity is not found
+   */
   @GetMapping("/{id}")
   public R getById(@PathVariable I id)
       throws DomainResourceNotFoundException, MappingNotFoundException {
