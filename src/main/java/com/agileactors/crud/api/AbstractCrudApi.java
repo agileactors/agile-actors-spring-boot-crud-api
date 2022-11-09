@@ -23,11 +23,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * Default implementation of CRUD api
+ * Default implementation of CRUD api.
  *
- * @param <I> the type of the entity type's identifier.
- * @param <T> the persisted type.
- * @param <S> the type of the service that exposes the crud operations of the given <T> type
+ * @param <I> the type of the entity type's identifier
+ * @param <T> the persisted type
+ * @param <S> the type of the service that exposes the crud operations of the given T type
  * @param <C> the type of the DTO used while creating an entity
  * @param <U> the type of the DTO used while updating an entity
  * @param <R> the type of the DTO used while retrieving an entity
