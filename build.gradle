@@ -22,12 +22,11 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor(platform("org.springframework.boot:spring-boot-dependencies:2.7.3"))
-    api(platform("org.springframework.boot:spring-boot-dependencies:2.7.3"))
+    annotationProcessor(platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
+    api(platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
 
     api 'org.springframework.boot:spring-boot-starter-data-jpa'
     api 'org.springframework.boot:spring-boot-starter-web'
-    api 'org.springframework.boot:spring-boot-starter-actuator'
     api 'org.springframework.boot:spring-boot-starter-validation'
     api 'org.projectlombok:lombok'
 
@@ -93,12 +92,12 @@ publishing {
                 packaging = 'jar'
                 description = project.description
 
-                url = 'https://github.com/agileactors/agile-actors-spring-boot-crud-api'
+                url = "https://github.com/agileactors/${project.name}"
 
                 scm {
-                    connection = 'git@github.com:agileactors/agile-actors-spring-boot-crud-api.git'
-                    developerConnection = 'git@github.com:agileactors/agile-actors-spring-boot-crud-api.git'
-                    url = 'https://github.com/agileactors/agile-actors-spring-boot-crud-api'
+                    connection = "git@github.com:agileactors/${project.name}.git"
+                    developerConnection = "git@github.com:agileactors/${project.name}.git"
+                    url = "https://github.com/agileactors/${project.name}"
                 }
 
                 licenses {
