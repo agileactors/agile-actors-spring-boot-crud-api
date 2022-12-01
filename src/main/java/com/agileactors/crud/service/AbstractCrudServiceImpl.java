@@ -25,7 +25,7 @@ public abstract class AbstractCrudServiceImpl<
     D extends AbstractDao<T, I>,
     I extends Serializable> implements AbstractCrudService<T, I> {
 
-  private final D dao;
+  protected final D dao;
 
   @Autowired
   private MappingService mappingService;
