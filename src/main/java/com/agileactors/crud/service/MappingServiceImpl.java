@@ -40,7 +40,7 @@ public final class MappingServiceImpl implements MappingService {
   private Class<?> getTargetMappingType(Class<?> source, MappingType targetMappingType)
       throws MappingNotFoundException {
 
-    final String mappingKey = source.getName() + "." + targetMappingType;
+    final String mappingKey = source.getName() + "." + targetMappingType.getValue();
 
     try {
       return Class.forName(springRestProperties.getMappings().get(mappingKey));

@@ -9,7 +9,7 @@ description = 'This is a library that extends Spring Boot functionality and offe
         'to expose a domain\'s CRUD (Create, Read, Update, Delete) operations.'
 
 group = 'com.agileactors'
-version = System.getenv("BUILD_VERSION") ? System.getenv("BUILD_VERSION") : '1.0.4'
+version = System.getenv("BUILD_VERSION") ? System.getenv("BUILD_VERSION") : '1.0.5'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11

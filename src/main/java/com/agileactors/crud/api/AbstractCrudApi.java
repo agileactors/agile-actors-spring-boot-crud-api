@@ -55,12 +55,12 @@ public abstract class AbstractCrudApi<
    */
   @GetMapping
   // TODO: Paging
-  public Stream<Object> findAll() {
+  public Stream<R> findAll() {
     return service.findAll()
         .parallelStream()
-        .map(it -> {
+        .map(entity -> {
           try {
-            return mappingService.convert(it.getClass(), MappingType.API_RESPONSE_GET);
+            return (R) mappingService.convert(entity, MappingType.API_RESPONSE_GET);
           } catch (MappingNotFoundException e) {
             // TODO: fix this shit
             e.printStackTrace();
